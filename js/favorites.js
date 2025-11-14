@@ -30,7 +30,7 @@
 
   function renderFavorites(stores, container) {
     container.innerHTML = stores.map(s => {
-      const imageUrl = s.hero_image_url || 'assets/placeholders/store-1.jpg';
+      const imageUrl = s.hero_image_url || './assets/placeholders/store-1.jpg';
       const location = [s.country || '', s.city || ''].filter(Boolean).join(' · ');
       const isCheckedIn = hasCheckin(String(s.id));
       const checkinBadge = isCheckedIn ? `
@@ -41,7 +41,7 @@
       return `
         <div class="featured-store-card" data-id="${s.id}">
           ${checkinBadge}
-          <img src="${imageUrl}" alt="${s.name || ''}" onerror="this.src='assets/placeholders/store-1.jpg'" />
+          <img src="${imageUrl}" alt="${s.name || ''}" onerror="this.src='./assets/placeholders/store-1.jpg'" />
           <div class="featured-store-info">
             <h4>${s.name || ''}</h4>
             <p><span class="pin-icon">📍</span> ${location || '未知地區'}</p>
@@ -56,7 +56,7 @@
     const card = e.target.closest('[data-id]');
     if (card) {
       const id = card.getAttribute('data-id');
-      window.location.href = `storepage.html?id=${encodeURIComponent(id)}`;
+      window.location.href = `./storepage.html?id=${encodeURIComponent(id)}`;
     }
   }
 

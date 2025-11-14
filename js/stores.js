@@ -125,42 +125,42 @@
         name: '信義 A13',
         country: '台灣',
         city: '台北',
-        hero_image_url: 'assets/placeholders/store-1.jpg'
+        hero_image_url: './assets/placeholders/store-1.jpg'
       },
       {
         id: '2',
         name: '福岡',
         country: '日本',
         city: '福岡',
-        hero_image_url: 'assets/placeholders/store-1.jpg'
+        hero_image_url: './assets/placeholders/store-1.jpg'
       },
       {
         id: '3',
         name: '表參道',
         country: '日本',
         city: '東京',
-        hero_image_url: 'assets/placeholders/store-1.jpg'
+        hero_image_url: './assets/placeholders/store-1.jpg'
       },
       {
         id: '4',
         name: '中環',
         country: '香港',
         city: '中環',
-        hero_image_url: 'assets/placeholders/store-1.jpg'
+        hero_image_url: './assets/placeholders/store-1.jpg'
       },
       {
         id: '5',
         name: '烏節路',
         country: '新加坡',
         city: '新加坡',
-        hero_image_url: 'assets/placeholders/store-1.jpg'
+        hero_image_url: './assets/placeholders/store-1.jpg'
       },
       {
         id: '6',
         name: '明洞',
         country: '韓國',
         city: '首爾',
-        hero_image_url: 'assets/placeholders/store-1.jpg'
+        hero_image_url: './assets/placeholders/store-1.jpg'
       }
     ];
   }
@@ -201,7 +201,7 @@
       // 保存当前滚动位置
       const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
       sessionStorage.setItem('storesScrollPosition', scrollPosition.toString());
-      window.location.href = `storepage.html?id=${encodeURIComponent(id)}`;
+      window.location.href = `./storepage.html?id=${encodeURIComponent(id)}`;
     }
   }
 
@@ -218,7 +218,7 @@
       return;
     }
     container.innerHTML = items.map(s => {
-      const imageUrl = s.hero_image_url || 'assets/placeholders/store-1.jpg';
+      const imageUrl = s.hero_image_url || './assets/placeholders/store-1.jpg';
       const location = [s.country || '', s.city || ''].filter(Boolean).join(' · ');
       const isCheckedIn = hasCheckin(String(s.id));
       const checkinBadge = isCheckedIn ? `
@@ -229,7 +229,7 @@
       return `
         <div class="featured-store-card" data-id="${s.id}">
           ${checkinBadge}
-          <img src="${imageUrl}" alt="${s.name || ''}" onerror="this.src='assets/placeholders/store-1.jpg'" />
+          <img src="${imageUrl}" alt="${s.name || ''}" onerror="this.src='./assets/placeholders/store-1.jpg'" />
           <div class="featured-store-info">
             <h4>${s.name || ''}</h4>
             <p><span class="pin-icon">📍</span> ${location || '未知地區'}</p>

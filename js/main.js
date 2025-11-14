@@ -65,7 +65,7 @@ async function loadProduct() {
       products = await fetchProducts();
       // 如果获取失败或为空，使用默认产品
       if (!products || products.length === 0) {
-        renderProduct({ name: 'iMac', year: '1998', image_url: 'assets/placeholders/imac-1998.png' });
+        renderProduct({ name: 'iMac', year: '1998', image_url: './assets/placeholders/imac-1998.png' });
         return;
       }
     } catch (error) {
@@ -95,10 +95,10 @@ function renderProduct(product) {
   const productName = document.getElementById('productName');
   
   if (productImage) {
-    productImage.src = product.image_url || 'assets/placeholders/imac-1998.png';
+    productImage.src = product.image_url || './assets/placeholders/imac-1998.png';
     productImage.alt = product.name || 'Product';
     productImage.onerror = function() {
-      this.src = 'assets/placeholders/imac-1998.png';
+      this.src = './assets/placeholders/imac-1998.png';
     };
   }
   
@@ -128,7 +128,7 @@ function renderFeatured(stores) {
 
   list.innerHTML = displayStores.map(
     s => {
-      const imageUrl = s.hero_image_url || 'assets/placeholders/store-1.jpg';
+      const imageUrl = s.hero_image_url || './assets/placeholders/store-1.jpg';
       const isCheckedIn = hasCheckin(String(s.id));
       const checkinBadge = isCheckedIn ? `
         <div class="checkin-badge">
@@ -136,9 +136,9 @@ function renderFeatured(stores) {
         </div>
       ` : '';
       return `
-        <div class="featured-store-card" onclick="location.href='storepage.html?id=${s.id}'">
+        <div class="featured-store-card" onclick="location.href='./storepage.html?id=${s.id}'">
           ${checkinBadge}
-          <img src="${imageUrl}" alt="${s.name || ''}" onerror="this.src='assets/placeholders/store-1.jpg'" />
+          <img src="${imageUrl}" alt="${s.name || ''}" onerror="this.src='./assets/placeholders/store-1.jpg'" />
           <div class="featured-store-info">
             <h4>${s.name || ''}</h4>
             <p><span class="pin-icon">📍</span> ${s.country || ''}</p>

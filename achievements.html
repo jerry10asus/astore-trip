@@ -8,14 +8,14 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="AStore Trip" />
   <title>AStore Trip - 成就</title>
-  <link rel="icon" type="image/png" href="assets/app_icon.png" />
-  <link rel="apple-touch-icon" href="assets/app_icon.png" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/glass.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/pwa-update.css" />
-  <link rel="stylesheet" href="css/pwa-install.css" />
+  <link rel="icon" type="image/png" href="./assets/app_icon.png" />
+  <link rel="apple-touch-icon" href="./assets/app_icon.png" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/glass.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/pwa-update.css" />
+  <link rel="stylesheet" href="./css/pwa-install.css" />
 </head>
 <body>
   <!-- Sheet 背景遮罩 -->
@@ -38,7 +38,7 @@
         <div class="summary-cards">
           <div class="summary-card">
             <div class="summary-icon">
-              <img src="assets/icon/Checkin.svg" alt="已造訪門市" />
+              <img src="./assets/icon/Checkin.svg" alt="已造訪門市" />
             </div>
             <div class="summary-number-row">
               <div class="summary-card__number highlight-blue" id="achVisitedCount">3</div>
@@ -49,7 +49,7 @@
           </div>
           <div class="summary-card">
             <div class="summary-icon">
-              <img src="assets/icon/Achievement.svg" alt="獲得勳章" />
+              <img src="./assets/icon/Achievement.svg" alt="獲得勳章" />
             </div>
             <div class="summary-card__number highlight-orange" id="achBadgeCount">2</div>
             <div class="summary-card__label">獲得勳章</div>
@@ -72,10 +72,10 @@
     </main>
   </div>
 
-  <script src="js/data.js"></script>
-  <script src="js/achievements.js"></script>
-  <script src="js/pwa-update.js"></script>
-  <script src="js/pwa-install.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/achievements.js"></script>
+  <script src="./js/pwa-update.js"></script>
+  <script src="./js/pwa-install.js"></script>
   <script>
     // Sheet 動畫和關閉功能
     document.addEventListener('DOMContentLoaded', () => {
@@ -113,7 +113,7 @@
 
       // Register Service Worker for PWA
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('./sw.js')
           .then(reg => console.log('Service Worker registered:', reg))
           .catch(err => console.error('Service Worker registration failed:', err));
       }

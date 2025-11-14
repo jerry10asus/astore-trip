@@ -8,20 +8,20 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="AStore Trip" />
   <title>AStore Trip - 關於</title>
-  <link rel="icon" type="image/png" href="assets/app_icon.png" />
-  <link rel="apple-touch-icon" href="assets/app_icon.png" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/glass.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/pwa-update.css" />
-  <link rel="stylesheet" href="css/pwa-install.css" />
+  <link rel="icon" type="image/png" href="./assets/app_icon.png" />
+  <link rel="apple-touch-icon" href="./assets/app_icon.png" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/glass.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/pwa-update.css" />
+  <link rel="stylesheet" href="./css/pwa-install.css" />
 </head>
 <body>
   <!-- Header -->
   <header class="page-header">
-    <a class="back-btn" href="index.html" aria-label="返回">
-      <img src="assets/icon/arrow_left.svg" alt="返回" class="back-icon" />
+    <a class="back-btn" href="./index.html" aria-label="返回">
+      <img src="./assets/icon/arrow_left.svg" alt="返回" class="back-icon" />
     </a>
     <h1 class="page-title" style="flex: 1; text-align: center;">關於</h1>
     <div style="width: 40px;"></div> <!-- 占位，保持标题居中 -->
@@ -81,14 +81,14 @@
   <!-- 版本號 -->
   <div class="app-version" id="appVersion"></div>
 
-  <script src="js/data.js"></script>
-  <script src="js/pwa-update.js"></script>
-  <script src="js/pwa-install.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/pwa-update.js"></script>
+  <script src="./js/pwa-install.js"></script>
   <script>
     // Register Service Worker for PWA
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('./sw.js')
           .then(reg => console.log('Service Worker registered:', reg))
           .catch(err => console.error('Service Worker registration failed:', err));
       });
@@ -97,7 +97,7 @@
     // 顯示版本號
     async function displayVersion() {
       try {
-        const response = await fetch('/sw.js');
+        const response = await fetch('./sw.js');
         const text = await response.text();
         const versionMatch = text.match(/const APP_VERSION = ['"]([^'"]+)['"]/);
         if (versionMatch && versionMatch[1]) {

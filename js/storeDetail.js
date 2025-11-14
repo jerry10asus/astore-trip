@@ -122,7 +122,7 @@
     
     // 如果沒有圖片，使用預設圖片
     if (images.length === 0) {
-      images.push('assets/placeholders/store-1.jpg');
+      images.push('./assets/placeholders/store-1.jpg');
     }
     
     // 清空現有內容
@@ -140,7 +140,7 @@
         img.src = url;
         img.alt = store.name || 'Store';
         img.onerror = function() {
-          this.src = 'assets/placeholders/store-1.jpg';
+          this.src = './assets/placeholders/store-1.jpg';
           // 即使出错也继续加载
           resolve();
         };
@@ -554,7 +554,7 @@
       viewBtn.onclick = () => {
         modal.style.display = 'none';
         document.body.style.overflow = '';
-        window.location.href = 'achievements.html';
+        window.location.href = './achievements.html';
       };
     }
     

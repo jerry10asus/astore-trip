@@ -1,30 +1,30 @@
-const APP_VERSION = 'v0.1.6';
+const APP_VERSION = 'v0.1.7';
 const APP_SHELL_CACHE = `astore-shell-${APP_VERSION}`;
 const DATA_CACHE = `astore-data-${APP_VERSION}`;
 
 const APP_SHELL_FILES = [
-  '/',
-  '/index.html',
-  '/stores.html',
-  '/favorites.html',
-  '/storepage.html',
-  '/achievements.html',
-  '/about.html',
-  '/css/base.css',
-  '/css/glass.css',
-  '/css/layout.css',
-  '/css/pwa-update.css',
-  '/css/pwa-install.css',
-  '/js/main.js',
-  '/js/data.js',
-  '/js/stores.js',
-  '/js/favorites.js',
-  '/js/storeDetail.js',
-  '/js/achievements.js',
-  '/js/pwa-update.js',
-  '/js/pwa-install.js',
-  '/assets/app_icon.png',
-  '/manifest.webmanifest'
+  './',
+  './index.html',
+  './stores.html',
+  './favorites.html',
+  './storepage.html',
+  './achievements.html',
+  './about.html',
+  './css/base.css',
+  './css/glass.css',
+  './css/layout.css',
+  './css/pwa-update.css',
+  './css/pwa-install.css',
+  './js/main.js',
+  './js/data.js',
+  './js/stores.js',
+  './js/favorites.js',
+  './js/storeDetail.js',
+  './js/achievements.js',
+  './js/pwa-update.js',
+  './js/pwa-install.js',
+  './assets/app_icon.png',
+  './manifest.webmanifest'
 ];
 
 self.addEventListener('install', event => {
@@ -100,7 +100,7 @@ self.addEventListener('fetch', event => {
       }).catch(() => {
         // If network fails and it's a navigation request, return index.html
         if (request.mode === 'navigate') {
-          return caches.match('/index.html');
+          return caches.match('./index.html');
         }
         return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
       });

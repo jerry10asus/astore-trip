@@ -153,8 +153,8 @@
       // 处理包含图标的步骤文本
       // 替换「分享」和「分享按鈕」为图标
       const stepWithIcon = step
-        .replace(/「分享按鈕」/g, '「<img src="assets/icon/ios_share.svg" class="share-icon" alt="分享" />」')
-        .replace(/「分享」/g, '「<img src="assets/icon/ios_share.svg" class="share-icon" alt="分享" />」');
+        .replace(/「分享按鈕」/g, '「<img src="./assets/icon/ios_share.svg" class="share-icon" alt="分享" />」')
+        .replace(/「分享」/g, '「<img src="./assets/icon/ios_share.svg" class="share-icon" alt="分享" />」');
       return `<div class="install-step">
         <span class="step-number">${index + 1}</span>
         <span class="step-text">${stepWithIcon}</span>
@@ -170,7 +170,7 @@
           </svg>
         </button>
         <div class="install-icon">
-          <img src="assets/app_icon.png" alt="AStore Trip" />
+          <img src="./assets/app_icon.png" alt="AStore Trip" />
         </div>
         <h3 class="install-title">${content.title}</h3>
         <div class="install-steps">

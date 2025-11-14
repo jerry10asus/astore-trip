@@ -43,7 +43,7 @@ async function fetchStores() {
       },
       google_map_url: store.google_map_url || '',
       google_map_iframe: store.google_map_iframe || '',
-      hero_image_url: store.hero_image_url || 'assets/placeholders/store-1.jpg',
+      hero_image_url: store.hero_image_url || './assets/placeholders/store-1.jpg',
       gallery_images: [
         store['gallery_image-1_url'],
         store['gallery_image-2_url'],
@@ -90,7 +90,7 @@ async function fetchProducts() {
       id: String(product.product_id || product.id || ''),
       name: product.product_name || '',
       year: product.product_year || '',
-      image_url: product.product_image || 'assets/placeholders/imac-1998.png'
+      image_url: product.product_image || './assets/placeholders/imac-1998.png'
     }));
     
     // 调试：查看处理后的产品数据

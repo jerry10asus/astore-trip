@@ -57,34 +57,43 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // 加载并显示产品
 async function loadProduct() {
-  let products = getStoredProducts();
-  
-  // 如果没有缓存的产品数据，尝试从 API 获取
-  if (!products || products.length === 0) {
-    try {
-      products = await fetchProducts();
-      // 如果获取失败或为空，使用默认产品
-      if (!products || products.length === 0) {
+  // 每次进入首页都重新从 Google Sheet 获取最新产品数据
+  try {
+    console.log('正在获取最新产品数据...');
+    const products = await fetchProducts();
+    
+    // 如果获取成功且有数据，随机选择一笔产品
+    if (products && products.length > 0) {
+      const randomIndex = Math.floor(Math.random() * products.length);
+      const selectedProduct = products[randomIndex];
+      console.log('随机选择的产品:', selectedProduct);
+      renderProduct(selectedProduct);
+    } else {
+      // 如果获取失败或为空，尝试使用缓存数据
+      const cachedProducts = getStoredProducts();
+      if (cachedProducts && cachedProducts.length > 0) {
+        const randomIndex = Math.floor(Math.random() * cachedProducts.length);
+        const selectedProduct = cachedProducts[randomIndex];
+        console.log('使用缓存产品数据:', selectedProduct);
+        renderProduct(selectedProduct);
+      } else {
+        // 如果缓存也没有，使用默认产品
         renderProduct({ name: 'iMac', year: '1998', image_url: './assets/placeholders/imac-1998.png' });
-        return;
       }
-    } catch (error) {
-      console.error('获取产品数据失败:', error);
-      // 使用默认产品
-      renderProduct({ name: 'iMac', year: '1998', image_url: 'assets/placeholders/imac-1998.png' });
-      return;
     }
-  }
-  
-  // 每次进入首页都随机选择一笔产品
-  if (products && products.length > 0) {
-    const randomIndex = Math.floor(Math.random() * products.length);
-    const selectedProduct = products[randomIndex];
-    console.log('随机选择的产品:', selectedProduct);
-    renderProduct(selectedProduct);
-  } else {
-    // 如果没有产品数据，使用默认值
-    renderProduct({ name: 'iMac', year: '1998', image_url: 'assets/placeholders/imac-1998.png' });
+  } catch (error) {
+    console.error('获取产品数据失败:', error);
+    // 如果获取失败，尝试使用缓存数据
+    const cachedProducts = getStoredProducts();
+    if (cachedProducts && cachedProducts.length > 0) {
+      const randomIndex = Math.floor(Math.random() * cachedProducts.length);
+      const selectedProduct = cachedProducts[randomIndex];
+      console.log('使用缓存产品数据（获取失败）:', selectedProduct);
+      renderProduct(selectedProduct);
+    } else {
+      // 如果缓存也没有，使用默认产品
+      renderProduct({ name: 'iMac', year: '1998', image_url: './assets/placeholders/imac-1998.png' });
+    }
   }
 }
 

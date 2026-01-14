@@ -1359,6 +1359,20 @@
   background: #ffffff;
 }
 
+.section-label-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+.hours-note {
+  font-size: 12px;
+  color: #999;
+  margin: 4px 0 0 0;
+  font-weight: normal;
+}
+
 .hours-list {
   display: flex;
   flex-direction: column;

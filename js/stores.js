@@ -229,7 +229,7 @@
       return `
         <div class="featured-store-card" data-id="${s.id}">
           ${checkinBadge}
-          <img src="${imageUrl}" alt="${s.name || ''}" onerror="this.src='./assets/placeholders/store-1.jpg'" />
+          <img src="${imageUrl}" alt="${s.name || ''}" loading="lazy" onerror="this.src='./assets/placeholders/store-1.jpg'" />
           <div class="featured-store-info">
             <h4>${s.name || ''}</h4>
             <p><span class="pin-icon">📍</span> ${location || '未知地區'}</p>

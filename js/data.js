@@ -8,15 +8,49 @@ async function fetchStores() {
     if (!timeStr || typeof timeStr !== 'string') {
       return { open: '11:00', close: '21:30' };
     }
-    // 支援全形和半形破折號
-    const parts = timeStr.split(/[－\-]/);
-    if (parts.length === 2) {
-      return {
-        open: parts[0].trim() || '11:00',
-        close: parts[1].trim() || '21:30'
+    
+    const trimmed = timeStr.trim();
+    
+    // 檢查是否為特殊值（休息、always open 等）
+    const specialValues = ['休息', 'always open', 'always open', 'Always Open', 'ALWAYS OPEN'];
+    if (specialValues.some(val => trimmed.toLowerCase() === val.toLowerCase() || trimmed === val)) {
+      return { 
+        open: '', 
+        close: '', 
+        text: trimmed // 保留原始文字
       };
     }
-    return { open: '11:00', close: '21:30' };
+    
+    // 支援全形和半形破折號、全形和半形空格
+    // 匹配各種可能的時間格式：9:30 - 20:00、11:00 – 17:00、9:30-20:00 等
+    const timePattern = /^(\d{1,2}:\d{2})\s*[－\-–—]\s*(\d{1,2}:\d{2})$/;
+    const match = trimmed.match(timePattern);
+    
+    if (match) {
+      return {
+        open: match[1].trim(),
+        close: match[2].trim()
+      };
+    }
+    
+    // 如果無法解析，嘗試用破折號分割
+    const parts = trimmed.split(/[－\-–—]/);
+    if (parts.length === 2) {
+      const open = parts[0].trim();
+      const close = parts[1].trim();
+      // 檢查是否為有效的時間格式（HH:MM）
+      const timeFormat = /^\d{1,2}:\d{2}$/;
+      if (timeFormat.test(open) && timeFormat.test(close)) {
+        return { open, close };
+      }
+    }
+    
+    // 如果無法解析為時間格式，視為特殊值，保留原始文字
+    return { 
+      open: '', 
+      close: '', 
+      text: trimmed 
+    };
   }
   
   // 轉換資料格式以符合應用程式需求
@@ -53,13 +87,13 @@ async function fetchStores() {
       ].filter(Boolean),
       description: store.description || '',
       hours: [
-        { weekday: 1, open: monHours.open, close: monHours.close },
-        { weekday: 2, open: tueHours.open, close: tueHours.close },
-        { weekday: 3, open: wedHours.open, close: wedHours.close },
-        { weekday: 4, open: thuHours.open, close: thuHours.close },
-        { weekday: 5, open: friHours.open, close: friHours.close },
-        { weekday: 6, open: satHours.open, close: satHours.close },
-        { weekday: 0, open: sunHours.open, close: sunHours.close }
+        { weekday: 1, open: monHours.open, close: monHours.close, text: monHours.text },
+        { weekday: 2, open: tueHours.open, close: tueHours.close, text: tueHours.text },
+        { weekday: 3, open: wedHours.open, close: wedHours.close, text: wedHours.text },
+        { weekday: 4, open: thuHours.open, close: thuHours.close, text: thuHours.text },
+        { weekday: 5, open: friHours.open, close: friHours.close, text: friHours.text },
+        { weekday: 6, open: satHours.open, close: satHours.close, text: satHours.text },
+        { weekday: 0, open: sunHours.open, close: sunHours.close, text: sunHours.text }
       ],
       phone: store.phone_number || ''
     };

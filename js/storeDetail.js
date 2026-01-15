@@ -64,7 +64,16 @@
       
       hoursEl.innerHTML = sortedHours.map((h, idx) => {
         const dayName = weekdayNames[idx];
-        return `<div class="hours-item">${dayName} ${h.open}-${h.close}</div>`;
+        // 如果有特殊文字（如「休息」、「always open」），優先顯示特殊文字
+        if (h.text) {
+          return `<div class="hours-item">${dayName} ${h.text}</div>`;
+        }
+        // 否則顯示時間範圍
+        if (h.open && h.close) {
+          return `<div class="hours-item">${dayName} ${h.open}-${h.close}</div>`;
+        }
+        // 如果都沒有，顯示預設值
+        return `<div class="hours-item">${dayName} 11:00-21:30</div>`;
       }).join('');
     } else if (hoursEl) {
       // 默认营业时间

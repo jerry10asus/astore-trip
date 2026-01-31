@@ -1720,6 +1720,7 @@
 /* 關於頁面 */
 .about-main {
   padding: 0 16px 100px;
+  padding-top: 76px; /* Header 高度約 56px + 12px 間距 + 8px 額外間距 */
   background: #ffffff;
 }
 
